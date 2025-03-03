@@ -1,0 +1,44 @@
+-- Inserção de dados de clientes
+INSERT INTO CLIENTE (id_cliente, nome, endereco, telefone, email) VALUES
+(1, 'João da Silva', 'Rua A, 123', '11 99999-9999', 'joao@email.com'),
+(2, 'Maria Souza', 'Avenida B, 456', '21 98888-8888', 'maria@email.com'),
+(3, 'Carlos Pereira', 'Rua C, 789', '31 97777-7777', 'carlos@email.com');
+
+-- Inserção de dados de veículos
+INSERT INTO VEICULO (id_veiculo, id_cliente, marca, modelo, placa, ano) VALUES
+(1, 1, 'Volkswagen', 'Gol', 'ABC1234', 2010),
+(2, 2, 'Fiat', 'Uno', 'DEF5678', 2015),
+(3, 3, 'Chevrolet', 'Onix', 'GHI9012', 2020);
+
+-- Inserção de dados de serviços
+INSERT INTO SERVICO (id_servico, nome_servico, descricao_servico, preco_servico) VALUES
+(1, 'Troca de óleo', 'Troca de óleo e filtro', 100.00),
+(2, 'Revisão geral', 'Revisão completa do veículo', 300.00),
+(3, 'Troca de freios', 'Troca de pastilhas e discos de freio', 200.00);
+
+-- Inserção de dados de mecânicos
+INSERT INTO MECANICO (id_mecanico, nome_mecanico, especialidade_mecanico) VALUES
+(1, 'Pedro Alves', 'Motor e suspensão'),
+(2, 'Ana Costa', 'Freios e pneus');
+
+-- Inserção de dados de peças
+INSERT INTO PECA (id_peca, nome_peca, descricao_peca, preco_peca) VALUES
+(1, 'Óleo de motor', 'Óleo 10W40', 50.00),
+(2, 'Filtro de óleo', 'Filtro para motor', 20.00),
+(3, 'Pastilha de freio', 'Jogo de pastilhas', 80.00),
+(4, 'Disco de freio', 'Disco ventilado', 150.00);
+
+-- Inserção de dados de ordens de serviço
+INSERT INTO ORDEM_SERVICO (id_ordem_servico, id_veiculo, id_mecanico, data_inicio, data_fim, status_ordem_servico) VALUES
+(1, 1, 1, '2023-10-26', '2023-10-26', 'Concluída'),
+(2, 2, 2, '2023-10-27', '2023-10-27', 'Concluída'),
+(3, 3, 1, '2023-10-28', '2023-10-28', 'Concluída');
+
+-- Inserção de dados de ordens de serviço-peças
+INSERT INTO ORDEM_SERVICO_PECA (id_ordem_servico_peca, id_ordem_servico, id_peca, quantidade_peca) VALUES
+(1, 1, 1, 1),
+(2, 1, 2, 1),
+(3, 2, 3, 2),
+(4, 2, 4, 2),
+(5, 3, 1, 1),
+(6, 3, 2, 1);
