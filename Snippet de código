@@ -1,0 +1,60 @@
+erDiagram
+    CLIENTE {
+        INT id_cliente PK
+        VARCHAR nome
+        VARCHAR endereco
+        VARCHAR telefone
+        VARCHAR email
+    }
+
+    VEICULO {
+        INT id_veiculo PK
+        INT id_cliente FK
+        VARCHAR marca
+        VARCHAR modelo
+        VARCHAR placa
+        INT ano
+    }
+
+    SERVICO {
+        INT id_servico PK
+        VARCHAR nome_servico
+        VARCHAR descricao_servico
+        FLOAT preco_servico
+    }
+
+    ORDEM_SERVICO {
+        INT id_ordem_servico PK
+        INT id_veiculo FK
+        INT id_mecanico FK
+        DATE data_inicio
+        DATE data_fim
+        VARCHAR status_ordem_servico
+    }
+
+    MECANICO {
+        INT id_mecanico PK
+        VARCHAR nome_mecanico
+        VARCHAR especialidade_mecanico
+    }
+
+    PECA {
+        INT id_peca PK
+        VARCHAR nome_peca
+        VARCHAR descricao_peca
+        FLOAT preco_peca
+    }
+
+    ORDEM_SERVICO_PECA {
+        INT id_ordem_servico_peca PK
+        INT id_ordem_servico FK
+        INT id_peca FK
+        INT quantidade_peca
+    }
+
+    CLIENTE ||--o{ VEICULO : possui
+    VEICULO ||--o{ ORDEM_SERVICO : realiza
+    MECANICO ||--o{ ORDEM_SERVICO : realiza
+    SERVICO ||--o{ ORDEM_SERVICO : executa
+    ORDEM_SERVICO ||--o{ ORDEM_SERVICO_PECA : utiliza
+    PECA ||--o{ ORDEM_SERVICO_PECA : utilizada
