@@ -1,0 +1,58 @@
+-- Criação do esquema do banco de dados
+CREATE TABLE CLIENTE (
+    id_cliente INT PRIMARY KEY,
+    nome VARCHAR(255),
+    endereco VARCHAR(255),
+    telefone VARCHAR(20),
+    email VARCHAR(255)
+);
+
+CREATE TABLE VEICULO (
+    id_veiculo INT PRIMARY KEY,
+    id_cliente INT,
+    marca VARCHAR(50),
+    modelo VARCHAR(50),
+    placa VARCHAR(10),
+    ano INT,
+    FOREIGN KEY (id_cliente) REFERENCES CLIENTE(id_cliente)
+);
+
+CREATE TABLE SERVICO (
+    id_servico INT PRIMARY KEY,
+    nome_servico VARCHAR(255),
+    descricao_servico VARCHAR(255),
+    preco_servico FLOAT
+);
+
+CREATE TABLE ORDEM_SERVICO (
+    id_ordem_servico INT PRIMARY KEY,
+    id_veiculo INT,
+    id_mecanico INT,
+    data_inicio DATE,
+    data_fim DATE,
+    status_ordem_servico VARCHAR(50),
+    FOREIGN KEY (id_veiculo) REFERENCES VEICULO(id_veiculo),
+    FOREIGN KEY (id_mecanico) REFERENCES MECANICO(id_mecanico)
+);
+
+CREATE TABLE MECANICO (
+    id_mecanico INT PRIMARY KEY,
+    nome_mecanico VARCHAR(255),
+    especialidade_mecanico VARCHAR(255)
+);
+
+CREATE TABLE PECA (
+    id_peca INT PRIMARY KEY,
+    nome_peca VARCHAR(255),
+    descricao_peca VARCHAR(255),
+    preco_peca FLOAT
+);
+
+CREATE TABLE ORDEM_SERVICO_PECA (
+    id_ordem_servico_peca INT PRIMARY KEY,
+    id_ordem_servico INT,
+    id_peca INT,
+    quantidade_peca INT,
+    FOREIGN KEY (id_ordem_servico) REFERENCES ORDEM_SERVICO(id_ordem_servico),
+    FOREIGN KEY (id_peca) REFERENCES PECA(id_peca)
+);
